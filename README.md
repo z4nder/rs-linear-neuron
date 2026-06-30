@@ -1,12 +1,11 @@
-# IA do zero: Implementar seu primeiro neurônio em Rust
+## IA do zero: Implementar seu primeiro neurônio em Rust
+
+Você já usou o GPT, mas sabe o que existe dentro dele? Neste post vamos construir em Rust o **bloco mais fundamental de qualquer rede neural**, um único neurônio e entender na prática como **previsão, erro e treino** funcionam.
 
 <p align="center">
   <img src="assets/banner.png" alt="banner do projeto" width="1000" />
 </p>
-
-Você já usou o GPT, mas sabe o que existe dentro dele? Neste post implementamos do zero, em Rust, o bloco mais fundamental de qualquer rede neural — um único neurônio.
-
-## Conteúdo
+### Conteúdo
 
 - 1 [Prólogo](#1)
 - 2 [O problema](#2)
@@ -17,6 +16,16 @@ Você já usou o GPT, mas sabe o que existe dentro dele? Neste post implementamo
 - 7 [O training loop](#7)
 - 8 [A limitação](#8)
 - 9 [Conclusão](#9)
+
+---
+
+### O que você vai ver neste post
+
+- Como transformar um problema simples em um dataset
+- Como representar um neurônio com `y = mx + b`
+- Como medir o erro entre previsão e valor real
+- Como ajustar os parâmetros do modelo ao longo do treino
+- Por que essa primeira estratégia ainda tem limitações
 
 ---
 
@@ -40,11 +49,11 @@ Imagine um canhão que cada vez que ele dispara, você controla a energia do dis
 
 A pergunta é: dado um valor de energia que nunca usamos antes, conseguimos prever a distância?
 
-```
+```plaintext
 energia → [ neurônio ] → distância prevista
 ```
 
-É isso que o neurônio vai aprender — não a partir de uma fórmula, mas a partir dos dados que coletamos.
+É isso que o neurônio vai aprender — **não a partir de uma fórmula**, mas a partir dos dados que coletamos.
 
 <img src="assets/problem_explain.png" alt="canhão e dataset" width="1000" />
 
@@ -68,9 +77,9 @@ let dataset: Vec<(f64, f64)> = vec![
 ];
 ```
 
-Cada par é `(energia, distância)` e este é o nosso dataset.
+Cada par é `(energia, distância)` e este é o nosso **dataset**.
 
-É com esses dados que o neurônio vai aprender, ele nunca vê a fórmula por trás, somente os pares. É como tentar descobrir a receita de um prato apenas provando ele várias vezes.
+É com esses dados que o neurônio vai aprender, ele **nunca vê a fórmula por trás**, somente os pares. É como tentar descobrir a receita de um prato apenas provando ele várias vezes.
 
 ---
 
@@ -85,7 +94,7 @@ Olhando os dados dá pra perceber: conforme a energia aumenta, a distância aume
 
 <img src="assets/01_equation.png" alt="efeito do weight e bias" width="1200" />
 
-Neste primeiro exemplo, vamos modelar o neurônio como uma transformação linear simples. Em Machine Learning (ML), `m` e `b` ganham nomes diferentes:
+Neste primeiro exemplo, vamos modelar o neurônio como uma **transformação linear simples**. Em Machine Learning (ML), `m` e `b` ganham nomes diferentes:
 
 - `m` → `weight`
 - `b` → `bias`
@@ -96,15 +105,15 @@ Neste primeiro exemplo, vamos modelar o neurônio como uma transformação linea
 
 ### 5. O neurônio <a name="5"></a>
 
-Um neurônio artificial, neste contexto, é essa equação aplicada a um problema real.
+Um neurônio artificial, neste contexto, é **essa equação aplicada a um problema real**.
 
 Para o nosso problema, a tradução fica assim:
 
-```
+```python
 y = mx + b -> distância = weight * energia + bias
 ```
 
-Ou seja, `x` vira energia, `y` vira distância, `m` vira `weight` e `b` vira `bias`.
+Ou seja, `x` vira `energia`, `y` vira `distância`, `m` vira `weight` e `b` vira `bias`.
 
 ```rust
 pub struct Neuron {
@@ -129,9 +138,9 @@ A função `predict` é literalmente `y = mx + b`, com `weight` e `bias` definid
 
 Agora que temos nosso neurônio com a função `predict` implementada, além dos parâmetros `weight` e `bias`, precisamos medir o quão boa foi a nossa previsão.
 
-O erro é calculado comparando o valor previsto pelo neurônio com o valor real definido no dataset.
+O erro é calculado comparando o **valor previsto** pelo neurônio com o **valor real** definido no dataset.
 
-```
+```python
 y = mx + b
 distância = weight × energia + bias
 
@@ -151,7 +160,7 @@ Visualmente, o estado inicial é esse:
 - **Bolinhas vermelhas** — os valores reais do dataset
 - **Linhas laranjas** — o tamanho do erro em cada ponto
 
-O objetivo é ajustar `weight` e `bias` até a linha azul passar por cima das bolinhas e quando as linhas laranjas sumirem, o neurônio aprendeu.
+O objetivo é ajustar `weight` e `bias` até a linha azul passar por cima das bolinhas e, quando as linhas laranjas sumirem, o neurônio aprendeu.
 
 ---
 
@@ -161,7 +170,7 @@ Agora que conseguimos calcular o erro, precisamos fazer o neurônio melhorar sua
 
 O training loop consiste em repetir o mesmo processo várias vezes. Cada passagem completa pelo dataset é chamada de uma `epoch`. A cada `epoch`, vamos ajustando `weight` e `bias` com o objetivo de aproximar a reta dos valores observados.
 
-Para este primeiro exemplo, vamos utilizar uma estratégia bastante simples e totalmente didática, sem ainda entrar em gradient descent ou cálculo de derivadas:
+Para este primeiro exemplo, vamos utilizar uma estratégia **bastante simples e totalmente didática**, sem ainda entrar em gradient descent ou cálculo de derivadas:
 
 1. Inicializamos weight e bias com valores (0, 0);
 2. Para cada par do dataset, por exemplo (10, 28), calculamos o erro da previsão;
@@ -186,7 +195,7 @@ for epoch in 0..epochs {
 }
 ```
 
-Essa regra de ajuste foi escolhida porque é fácil de visualizar: quando o neurônio erra para cima, empurramos os parâmetros para baixo; quando erra para baixo, empurramos para cima. Ela melhora o modelo, mas ainda não é o procedimento mais adequado para treino.
+Essa regra de ajuste foi escolhida porque é fácil de visualizar: quando o neurônio erra para cima, empurramos os parâmetros para baixo; quando erra para baixo, empurramos para cima. Ela melhora o modelo, mas **ainda não é o procedimento mais adequado para treino**.
 
 Depois de 1000 epochs:
 
@@ -200,7 +209,7 @@ A reta se ajustou. O neurônio aprendeu alguma coisa.
 
 A reta se ajustou, mas não perfeitamente: ela acerta nos pontos do meio e erra mais nas pontas.
 
-O motivo é que esse algoritmo ajusta sempre pelo mesmo passo fixo (`0.01`), sem considerar o **tamanho** do erro, só o sinal. Além disso, ele não usa a inclinação de uma função de perda para decidir a direção e a intensidade ideais do ajuste, então em algum momento começa a oscilar, ultrapassa o valor certo, corrige demais pro outro lado e ultrapassa de novo. Mais epochs não resolve.
+O motivo é que esse algoritmo ajusta sempre pelo mesmo passo fixo (`0.01`), sem considerar o **tamanho do erro**, só o sinal. Além disso, ele não usa a inclinação de uma função de perda para decidir a direção e a intensidade ideais do ajuste, então em algum momento começa a oscilar, ultrapassa o valor certo, corrige demais pro outro lado e ultrapassa de novo. **Mais epochs não resolve**.
 
 O que resolve é o **gradient descent**, outra forma de tentar reduzir o erro que veremos em um próximo post.
 
@@ -218,9 +227,9 @@ O que foi aprendido:
 - O erro mede o quanto o neurônio está errando em cada ponto
 - O training loop usa o erro para ajustar os parâmetros a cada `epoch`
 
-Na prática, o que construímos aqui foi um modelo linear simples treinado com uma regra manual de ajuste e isso já é suficiente para entender a intuição central de previsão, erro e correção, mesmo antes de entrar em outros algoritmos.
+Na prática, o que construímos aqui foi um **modelo linear simples treinado com uma regra manual de ajuste** e isso já é suficiente para entender a intuição central de previsão, erro e correção, mesmo antes de entrar em outros algoritmos.
 
-O que ainda não resolvemos é que o ajuste pelo sinal do erro é simples demais, não considera o tamanho do erro com precisão e pode causar oscilação.
+O que ainda não resolvemos é que o ajuste pelo sinal do erro é **simples demais**, não considera o tamanho do erro com precisão e pode causar oscilação.
 
 No próximo post: **gradient descent**, o algoritmo que visa melhorar isso e é uma forte base de todo o aprendizado de máquina moderno.
 
@@ -228,8 +237,8 @@ No próximo post: **gradient descent**, o algoritmo que visa melhorar isso e é 
 
 ### Referências
 
+- [Código-fonte do projeto](https://github.com/z4nder/rs-linear-neuron)
 - [Neural Network from Scratch — vídeo que inspirou essa série](https://www.youtube.com/watch?v=GkiITbgu0V0&t=477s)
 - [Artificial neuron — Wikipedia](https://en.wikipedia.org/wiki/Artificial_neuron)
-- [Código-fonte do projeto](https://github.com/z4nder/rs-linear-neuron)
 
 ---
