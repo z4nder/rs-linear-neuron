@@ -83,7 +83,9 @@ Olhando os dados dá pra perceber: conforme a energia aumenta, a distância aume
 - `m` controla a **inclinação** — a cada 1 unidade que `x` avança, `y` sobe `m` unidades
 - `b` controla onde a reta **começa** — onde ela cruza o eixo Y quando `x = 0`
 
-<img src="assets/01_equation.png" alt="efeito do weight e bias" width="1200" />
+<img src="assets/01_weight.png" alt="efeito do weight" width="1000" />
+
+<img src="assets/01_bias.png" alt="efeito do bias" width="1000" />
 
 Neste primeiro exemplo, vamos modelar o neurônio como uma **transformação linear simples**. Em Machine Learning (ML), `m` e `b` ganham nomes diferentes:
 
@@ -190,7 +192,9 @@ Essa regra de ajuste foi escolhida porque é fácil de visualizar: quando o neur
 
 Depois de 1000 epochs:
 
-<img src="assets/01_comparison.png" alt="antes e depois do treino" width="1200" />
+<img src="assets/01_error_before.png" alt="estado inicial antes do treino" width="1000" />
+
+<img src="assets/01_error_after.png" alt="estado final depois do treino" width="1000" />
 
 A reta se ajustou. O neurônio aprendeu alguma coisa.
 

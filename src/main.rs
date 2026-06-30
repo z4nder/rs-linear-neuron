@@ -55,6 +55,8 @@ fn main() {
         weight: 0.0,
         bias: 0.0,
     };
+    plots::plot_slopes("assets/01_weight.png");
+    plots::plot_biases("assets/01_bias.png");
     plots::plot_equation_comparison("assets/01_equation.png");
     plots::plot_error(&dataset, &neuron, "assets/01_error.png");
     plots::plot_error(&dataset, &neuron, "assets/01_error_before.png");
