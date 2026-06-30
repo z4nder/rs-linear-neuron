@@ -1,4 +1,4 @@
-# Como implementar seu primeiro neurônio em Rust
+# IA Zero to Hero: Como implementar seu primeiro neurônio em Rust
 
 <p align="center">
   <img src="assets/banner.png" alt="banner do projeto" width="1000" />
@@ -233,5 +233,3 @@ No próximo post: **gradient descent**, o algoritmo que visa melhorar isso e é 
 - [Código-fonte do projeto](https://github.com/z4nder/rs-linear-neuron)
 
 ---
-
-_Série: Do neurônio ao Transformer — implementando IA do início em Rust._
