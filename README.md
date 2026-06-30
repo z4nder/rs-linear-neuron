@@ -81,7 +81,7 @@ Olhando os dados dá pra perceber: conforme a energia aumenta, a distância aume
 
 <img src="assets/01_equation.png" alt="efeito do weight e bias" width="1000" />
 
-Um neurônio artificial é exatamente essa equação em Machine Learning(ML), `m` e `b` ganham nomes diferentes:
+Um neurônio artificial é exatamente essa equação em Machine Learning (ML), `m` e `b` ganham nomes diferentes:
 
 - `m` → `weight`
 - `b` → `bias`
@@ -115,7 +115,7 @@ impl Neuron {
 let neuron = Neuron { weight: 0.0, bias: 0.0 };
 ```
 
-A função `predict` é literalmente `y = mx + b` e `weight` e `bias` definidos como zero pois nosso neurônio ainda não sabe nada.
+A função `predict` é literalmente `y = mx + b`, com `weight` e `bias` definidos como zero, pois nosso neurônio ainda não sabe nada.
 
 ---
 
@@ -190,11 +190,11 @@ A reta se ajustou. O neurônio aprendeu alguma coisa.
 
 ### 8. A limitação <a name="8"></a>
 
-A reta se ajustou mas não perfeitamente, ela acerta nos pontos do meio e erra mais nas pontas.
+A reta se ajustou, mas não perfeitamente: ela acerta nos pontos do meio e erra mais nas pontas.
 
 O motivo: esse algoritmo ajusta sempre pelo mesmo passo fixo (`0.01`), sem considerar o **tamanho** do erro, só o sinal. Em algum momento começa a oscilar e ultrapassa o valor certo, corrige demais pro outro lado, ultrapassa de novo. Mais epochs não resolve.
 
-O que resolve é o **gradient descent** uma outra forma de tentar reduzir o erro que veremos em um próximo post.
+O que resolve é o **gradient descent**, outra forma de tentar reduzir o erro que veremos em um próximo post.
 
 ---
 
@@ -210,9 +210,9 @@ O que foi aprendido:
 - O erro mede o quanto o neurônio está errando em cada ponto
 - O training loop usa o erro para ajustar os parâmetros a cada `epoch`
 
-O que ainda não resolvemos: O ajuste pelo sinal do erro é simples demais, ele não considera o tamanho do erro limitando a precisão e pode causar oscilação.
+O que ainda não resolvemos: o ajuste pelo sinal do erro é simples demais. Ele não considera o tamanho do erro, limitando a precisão, e pode causar oscilação.
 
-No próximo post: **gradient descent** o algoritmo que visa melhorar isso e é uma forte base de todo o aprendizado de máquina moderno.
+No próximo post: **gradient descent**, o algoritmo que visa melhorar isso e é uma forte base de todo o aprendizado de máquina moderno.
 
 ---
 
