@@ -147,11 +147,11 @@ Visualmente, o estado inicial é esse:
 
 <img src="assets/01_error.png" alt="gráfico mostrando a previsão inicial do neurônio, os pontos reais do dataset e as linhas de erro entre eles" width="1000" />
 
-- **Linha azul** — previsão do neurônio, colada no zero
-- **Bolinhas vermelhas** — os valores reais do dataset
+- **Linha roxa** — previsão do neurônio, colada no zero
+- **Bolinhas verdes** — os valores reais do dataset
 - **Linhas laranjas** — o tamanho do erro em cada ponto
 
-O objetivo é ajustar `weight` e `bias` até a linha azul passar por cima das bolinhas e, quando as linhas laranjas sumirem, o neurônio aprendeu.
+O objetivo é ajustar `weight` e `bias` até a linha roxa passar por cima das bolinhas e, quando as linhas laranjas sumirem, o neurônio aprendeu.
 
 ---
 
