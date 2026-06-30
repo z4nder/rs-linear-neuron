@@ -19,16 +19,6 @@ Você já usou o GPT, mas sabe o que existe dentro dele? Neste post vamos constr
 
 ---
 
-### O que você vai ver neste post
-
-- Como transformar um problema simples em um dataset
-- Como representar um neurônio com `y = mx + b`
-- Como medir o erro entre previsão e valor real
-- Como ajustar os parâmetros do modelo ao longo do treino
-- Por que essa primeira estratégia ainda tem limitações
-
----
-
 ### 1. Prólogo <a name="1"></a>
 
 Tenho usado muita IA ultimamente para escrever código, construir produtos e acompanhar tudo o que está acontecendo na área. E um ponto com o qual sempre concordo é a importância de estudar os fundamentos.
