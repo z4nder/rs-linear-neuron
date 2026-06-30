@@ -1,4 +1,4 @@
-# IA Zero to Hero: Como implementar seu primeiro neurônio em Rust
+# IA do zero: Implementar seu primeiro neurônio em Rust
 
 <p align="center">
   <img src="assets/banner.png" alt="banner do projeto" width="1000" />
