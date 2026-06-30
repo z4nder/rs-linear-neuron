@@ -46,7 +46,7 @@ energia → [ neurônio ] → distância prevista
 
 É isso que o neurônio vai aprender — não a partir de uma fórmula, mas a partir dos dados que coletamos.
 
-<img src="assets/problem_explain.png" alt="canhão e dataset" width="700" />
+<img src="assets/problem_explain.png" alt="canhão e dataset" width="1000" />
 
 ---
 
@@ -83,7 +83,7 @@ Olhando os dados dá pra perceber: conforme a energia aumenta, a distância aume
 - `m` controla a **inclinação** — a cada 1 unidade que `x` avança, `y` sobe `m` unidades
 - `b` controla onde a reta **começa** — onde ela cruza o eixo Y quando `x = 0`
 
-<img src="assets/01_equation.png" alt="efeito do weight e bias" width="1000" />
+<img src="assets/01_equation.png" alt="efeito do weight e bias" width="1200" />
 
 Neste primeiro exemplo, vamos modelar o neurônio como uma transformação linear simples. Em Machine Learning (ML), `m` e `b` ganham nomes diferentes:
 
@@ -145,7 +145,7 @@ let error = predicted - actual;
 
 Visualmente, o estado inicial é esse:
 
-<img src="assets/01_error.png" alt="erro inicial" width="700" />
+<img src="assets/01_error.png" alt="erro inicial" width="1000" />
 
 - **Linha azul** — previsão do neurônio, colada no zero
 - **Bolinhas vermelhas** — os valores reais do dataset
@@ -190,7 +190,7 @@ Essa regra de ajuste foi escolhida porque é fácil de visualizar: quando o neur
 
 Depois de 1000 epochs:
 
-<img src="assets/01_comparison.png" alt="antes e depois do treino" width="1000" />
+<img src="assets/01_comparison.png" alt="antes e depois do treino" width="1200" />
 
 A reta se ajustou. O neurônio aprendeu alguma coisa.
 
