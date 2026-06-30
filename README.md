@@ -42,7 +42,7 @@ energia → [ neurônio ] → distância prevista
 
 É isso que o neurônio vai aprender — não a partir de uma fórmula, mas a partir dos dados que coletamos.
 
-![canhão e dataset](assets/problem_explain.png)
+<img src="assets/problem_explain.png" alt="canhão e dataset" width="700" />
 
 ---
 
@@ -79,7 +79,7 @@ Olhando os dados dá pra perceber: conforme a energia aumenta, a distância aume
 - `m` controla a **inclinação** — a cada 1 unidade que `x` avança, `y` sobe `m` unidades
 - `b` controla onde a reta **começa** — onde ela cruza o eixo Y quando `x = 0`
 
-![efeito do weight e bias](assets/01_equation.png)
+<img src="assets/01_equation.png" alt="efeito do weight e bias" width="1000" />
 
 Um neurônio artificial é exatamente essa equação em Machine Learning(ML), `m` e `b` ganham nomes diferentes:
 
@@ -139,7 +139,7 @@ let error = predicted - actual;
 
 Visualmente, o estado inicial é esse:
 
-![erro inicial](assets/01_error.png)
+<img src="assets/01_error.png" alt="erro inicial" width="700" />
 
 - **Linha azul** — previsão do neurônio, colada no zero
 - **Bolinhas vermelhas** — os valores reais do dataset
@@ -182,7 +182,7 @@ for epoch in 0..epochs {
 
 Depois de 1000 epochs:
 
-![antes e depois do treino](assets/01_comparison.png)
+<img src="assets/01_comparison.png" alt="antes e depois do treino" width="1000" />
 
 A reta se ajustou. O neurônio aprendeu alguma coisa.
 
@@ -220,6 +220,7 @@ No próximo post: **gradient descent** o algoritmo que visa melhorar isso e é u
 
 - [Neural Network from Scratch — vídeo que inspirou essa série](https://www.youtube.com/watch?v=GkiITbgu0V0&t=477s)
 - [Artificial neuron — Wikipedia](https://en.wikipedia.org/wiki/Artificial_neuron)
+- [Código-fonte do projeto](https://github.com/z4nder/rs-linear-neuron)
 
 ---
 
