@@ -1,5 +1,9 @@
 # Como implementar seu primeiro neurônio em Rust
 
+<p align="center">
+  <img src="assets/banner.png" alt="banner do projeto" width="1000" />
+</p>
+
 Você já usou o GPT, mas sabe o que existe dentro dele? Neste post implementamos do zero, em Rust, o bloco mais fundamental de qualquer rede neural — um único neurônio.
 
 ## Conteúdo
@@ -81,7 +85,7 @@ Olhando os dados dá pra perceber: conforme a energia aumenta, a distância aume
 
 <img src="assets/01_equation.png" alt="efeito do weight e bias" width="1000" />
 
-Um neurônio artificial é exatamente essa equação em Machine Learning (ML), `m` e `b` ganham nomes diferentes:
+Neste primeiro exemplo, vamos modelar o neurônio como uma transformação linear simples. Em Machine Learning (ML), `m` e `b` ganham nomes diferentes:
 
 - `m` → `weight`
 - `b` → `bias`
@@ -92,13 +96,15 @@ Um neurônio artificial é exatamente essa equação em Machine Learning (ML), `
 
 ### 5. O neurônio <a name="5"></a>
 
-Um neurônio artificial é essa equação aplicada a um problema real.
+Um neurônio artificial, neste contexto, é essa equação aplicada a um problema real.
 
-Para o nosso problema
+Para o nosso problema, a tradução fica assim:
 
 ```
 y = mx + b -> distância = weight * energia + bias
 ```
+
+Ou seja, `x` vira energia, `y` vira distância, `m` vira `weight` e `b` vira `bias`.
 
 ```rust
 pub struct Neuron {
@@ -155,7 +161,7 @@ Agora que conseguimos calcular o erro, precisamos fazer o neurônio melhorar sua
 
 O training loop consiste em repetir o mesmo processo várias vezes. Cada passagem completa pelo dataset é chamada de uma `epoch`. A cada `epoch`, vamos ajustando `weight` e `bias` com o objetivo de aproximar a reta dos valores observados.
 
-Para este primeiro exemplo, vamos utilizar uma estratégia bastante simples:
+Para este primeiro exemplo, vamos utilizar uma estratégia bastante simples e totalmente didática, sem ainda entrar em gradient descent ou cálculo de derivadas:
 
 1. Inicializamos weight e bias com valores (0, 0);
 2. Para cada par do dataset, por exemplo (10, 28), calculamos o erro da previsão;
@@ -180,6 +186,8 @@ for epoch in 0..epochs {
 }
 ```
 
+Essa regra de ajuste foi escolhida porque é fácil de visualizar: quando o neurônio erra para cima, empurramos os parâmetros para baixo; quando erra para baixo, empurramos para cima. Ela melhora o modelo, mas ainda não é o procedimento mais adequado para treino.
+
 Depois de 1000 epochs:
 
 <img src="assets/01_comparison.png" alt="antes e depois do treino" width="1000" />
@@ -192,7 +200,7 @@ A reta se ajustou. O neurônio aprendeu alguma coisa.
 
 A reta se ajustou, mas não perfeitamente: ela acerta nos pontos do meio e erra mais nas pontas.
 
-O motivo: esse algoritmo ajusta sempre pelo mesmo passo fixo (`0.01`), sem considerar o **tamanho** do erro, só o sinal. Em algum momento começa a oscilar e ultrapassa o valor certo, corrige demais pro outro lado, ultrapassa de novo. Mais epochs não resolve.
+O motivo é que esse algoritmo ajusta sempre pelo mesmo passo fixo (`0.01`), sem considerar o **tamanho** do erro, só o sinal. Além disso, ele não usa a inclinação de uma função de perda para decidir a direção e a intensidade ideais do ajuste, então em algum momento começa a oscilar, ultrapassa o valor certo, corrige demais pro outro lado e ultrapassa de novo. Mais epochs não resolve.
 
 O que resolve é o **gradient descent**, outra forma de tentar reduzir o erro que veremos em um próximo post.
 
@@ -210,7 +218,9 @@ O que foi aprendido:
 - O erro mede o quanto o neurônio está errando em cada ponto
 - O training loop usa o erro para ajustar os parâmetros a cada `epoch`
 
-O que ainda não resolvemos: o ajuste pelo sinal do erro é simples demais. Ele não considera o tamanho do erro, limitando a precisão, e pode causar oscilação.
+Na prática, o que construímos aqui foi um modelo linear simples treinado com uma regra manual de ajuste e isso já é suficiente para entender a intuição central de previsão, erro e correção, mesmo antes de entrar em outros algoritmos.
+
+O que ainda não resolvemos é que o ajuste pelo sinal do erro é simples demais, não considera o tamanho do erro com precisão e pode causar oscilação.
 
 No próximo post: **gradient descent**, o algoritmo que visa melhorar isso e é uma forte base de todo o aprendizado de máquina moderno.
 
